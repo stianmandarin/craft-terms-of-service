@@ -1,0 +1,27 @@
+{# @var craft \craft\web\twig\variables\CraftVariable #}
+{#
+/**
+ * Craft Terms of Service plugin for Craft CMS 3.x
+ *
+ * Craft Terms of Service Settings.twig
+ *
+ * @author    Mandarin Design
+ * @copyright Copyright (c) 2018 Mandarin Design
+ * @link      https://mandarindesign.no
+ * @package   CraftTermsOfService
+ * @since     1.0.0
+ */
+#}
+
+{% import "_includes/forms" as forms %}
+
+{% do view.registerAssetBundle("mandarindesign\\crafttermsofservice\\assetbundles\\crafttermsofservice\\CraftTermsOfServiceAsset") %}
+
+{{ forms.textField({
+    label: 'Name of plugin'|t('craft-terms-of-service'),
+    instructions: 'What would you like the plugin to be called in the sidebar?'|t('craft-terms-of-service'),
+    id: 'tosPluginName',
+    name: 'tosPluginName',
+    first: true,
+    value: settings['tosPluginName']})
+}}

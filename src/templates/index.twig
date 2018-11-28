@@ -1,0 +1,92 @@
+{# @var craft \craft\web\twig\variables\CraftVariable #}
+{#
+/**
+ * Craft Terms of Service plugin for Craft CMS 3.x
+ *
+ * Craft Terms of Service index.twig
+ *
+ * @author    Mandarin Design
+ * @copyright Copyright (c) 2018 Mandarin Design
+ * @link      https://mandarindesign.no
+ * @package   CraftTermsOfService
+ * @since     1.0.0
+ */
+#}
+
+{#
+{% do view.registerAssetBundle("mandarindesign\\crafttermsofservice\\assetbundles\\crafttermsofservice\\CraftTermsOfServiceAsset") %}
+{% do view.registerAssetBundle("mandarindesign\\crafttermsofservice\\assetbundles\\indexcpsection\\IndexCPSectionAsset") %}
+#}
+
+{# Link for the ? icon at the bottom of the page #}
+{#{% set docsUrl = "https://github.com/stianmandarin/craft-terms-of-service/blob/master/README.md" %}#}
+
+{# The title of this CP section #}
+
+
+{# The URL to this plugin's base CP section #}
+{#{% set pluginCpUrl = url('craft-terms-of-service') %}#}
+
+{# Get a URL to an image in our AssetBundle #}
+{#{% set iconUrl = view.getAssetManager().getPublishedUrl('@mandarindesign/crafttermsofservice/assetbundles/indexcpsection/dist', true) ~ '/img/Index-icon.svg' %}#}
+
+{# Content that should appear in the page header#}
+{#{% set extraPageHeaderHtml %}
+    <div class="buttons">
+        <a href="{{ pluginCpUrl }}" class="btn submit add icon">{{ "Click Me!"|t('craft-terms-of-service') }}</a>
+    </div>
+{% endset %}#}
+
+{# The content of the CP Section#}
+
+{% extends "_layouts/cp" %}
+{% import "_includes/forms" as forms %}
+{% set title = "Terms of Service" %}
+
+{% block content %}
+    <h3>Instructions</h3>
+    <p>If enabled, all users who have not yet accepted your Terms of Service will be required to do so before accessing the site.</p>
+    <p>If ever you edit your TOS, all users, regardless if previous acceptance, will be required to accept the edited TOS.</p>
+
+    <form action="" method="post">
+        {{ csrfInput() }}
+
+        {{ forms.hidden({
+            name: 'action',
+            value: 'craft-terms-of-service/default/save-tos'
+        }) }}
+
+        {{ forms.hidden({
+            name: 'tosCurrentVersion',
+            value: now.timestamp
+        }) }}
+
+        {{ forms.lightswitchField({
+            label: 'Enable TOS?'|t,
+            id: 'tosEnabled',
+            name: 'tosEnabled',
+            on: craft.craftTermsOfService.get('tosEnabled'),
+            first: true
+        }) }}
+
+        {{ forms.textField({
+            label: 'Headline'|t('craft-terms-of-service'),
+            instructions: 'Enter the headline of your TOS here.'|t('craft-terms-of-service'),
+            id: 'tosHeadline',
+            name: 'tosHeadline',
+            value: craft.craftTermsOfService.get('tosHeadline')
+        }) }}
+
+        {{ craft.craftTermsOfService.redactorField({
+            label: 'Terms of Service'|t('craft-terms-of-service'),
+            instructions: 'Enter the TOS every user must accept before using the site below.'|t('craft-terms-of-service'),
+            name: 'tosBody',
+            rows: 4,
+            value: craft.craftTermsOfService.get('tosBody')|raw
+        })|raw }}
+
+
+
+        <input type="submit" class="submit btn" value="{{ 'Save'|t }}">
+    </form>
+{% endblock %}
