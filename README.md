@@ -48,10 +48,11 @@ To install the plugin, follow these instructions.
 ## Using Terms of Service
 
 * `{{ craft.craftTermsOfService.get('tosEnabled') }}` returns true if the TOS is enabled.
-* `{{ craft.craftTermsOfService.get('tosHeadline') }}` returns the TOS headline
-* `{{ craft.craftTermsOfService.get('tosBody')|raw }}` returns the TOS body
-* `{{ craft.craftTermsOfService.get('userAcceptedVersion') }}` returns the version number of the TOS that the logged in user has consented to
-* `{{ craft.craftTermsOfService.get('tosCurrentVersion') }}` returns the latest version number of the TOS, so that you can compare with the `userAcceptedVersion`
+* `{{ craft.craftTermsOfService.get('tosHeadline') }}` returns the TOS headline.
+* `{{ craft.craftTermsOfService.get('tosBody')|raw }}` returns the TOS body.
+* `{{ craft.craftTermsOfService.get('userAcceptedVersion') }}` returns the version number of the TOS that the logged in user has consented to.
+* `{{ craft.craftTermsOfService.get('tosCurrentVersion') }}` returns the latest version number of the TOS, so that you can compare with the `userAcceptedVersion`.
+* You can change the display name of the plugin in the CP by going to its settings page.
 
 Use at your own risk.
 

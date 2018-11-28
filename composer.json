@@ -1,43 +1,44 @@
 {
-    "name": "mandarindesign/craft-terms-of-service",
-    "description": "Force logged in users to accept the sites TOS before being able to use the site.",
-    "type": "craft-plugin",
-    "version": "1.0.0",
-    "keywords": [
-        "craft",
-        "cms",
-        "craftcms",
-        "craft-plugin",
-        "craft terms of service"
-    ],
-    "support": {
-        "docs": "https://github.com/stianmandarin/craft-terms-of-service/blob/master/README.md",
-        "issues": "https://github.com/stianmandarin/craft-terms-of-service/issues"
-    },
-    "license": "MIT",
-    "authors": [
-        {
-            "name": "Mandarin Design",
-            "homepage": "https://mandarindesign.no"
-        }
-    ],
-    "require": {
-        "craftcms/cms": "^3.0.0-RC1"
-    },
-    "autoload": {
-        "psr-4": {
-          "mandarindesign\\crafttermsofservice\\": "src/"
-        }
-    },
-    "extra": {
-        "name": "Terms of Service",
-        "handle": "craft-terms-of-service",
-        "hasCpSettings": true,
-        "hasCpSection": true,
-        "changelogUrl": "https://raw.githubusercontent.com/stianmandarin/craft-terms-of-service/master/CHANGELOG.md",
-        "components": {
-            "craftTermsOfServiceService": "mandarindesign\\crafttermsofservice\\services\\CraftTermsOfServiceService"
-        },
-        "class": "mandarindesign\\crafttermsofservice\\CraftTermsOfService"
+  "name": "mandarindesign/craft-terms-of-service",
+  "description": "Force logged in users to accept the sites TOS before being able to use the site.",
+  "type": "craft-plugin",
+  "version": "1.0.0",
+  "keywords": [
+    "craft",
+    "cms",
+    "craftcms",
+    "craft-plugin",
+    "craft terms of service"
+  ],
+  "support": {
+    "docs": "https://github.com/stianmandarin/craft-terms-of-service/blob/master/README.md",
+    "issues": "https://github.com/stianmandarin/craft-terms-of-service/issues"
+  },
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Mandarin Design",
+      "homepage": "https://mandarindesign.no"
     }
+  ],
+  "minimum-stability": "dev",
+  "require": {
+    "craftcms/cms": "^3.0.0-RC1"
+  },
+  "autoload": {
+    "psr-4": {
+      "mandarindesign\\crafttermsofservice\\": "src/"
+    }
+  },
+  "extra": {
+    "name": "Terms of Service",
+    "handle": "craft-terms-of-service",
+    "hasCpSettings": true,
+    "hasCpSection": true,
+    "changelogUrl": "https://raw.githubusercontent.com/stianmandarin/craft-terms-of-service/master/CHANGELOG.md",
+    "components": {
+      "craftTermsOfServiceService": "mandarindesign\\crafttermsofservice\\services\\CraftTermsOfServiceService"
+    },
+    "class": "mandarindesign\\crafttermsofservice\\CraftTermsOfService"
+  }
 }
