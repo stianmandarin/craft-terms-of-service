@@ -1,6 +1,5 @@
 {
   "name": "mandarindesign/craft-terms-of-service",
-  "minimum-stability": "dev",
   "description": "Force logged in users to accept the sites TOS before being able to use the site.",
   "type": "craft-plugin",
   "version": "1.0.0",
@@ -22,6 +21,15 @@
       "homepage": "https://mandarindesign.no"
     }
   ],
+  "require": {
+    "craftcms/cms": "^3.0.0"
+  },
+  "repositories": [
+      {
+          "type": "composer",
+          "url": "https://asset-packagist.org"
+      }
+  ],
   "autoload": {
     "psr-4": {
       "mandarindesign\\crafttermsofservice\\": "src/"
@@ -32,7 +40,7 @@
     "handle": "craft-terms-of-service",
     "hasCpSettings": true,
     "hasCpSection": true,
-    "changelogUrl": "https://raw.githubusercontent.com/stianmandarin/crafttermsofservice/master/CHANGELOG.md",
+    "changelogUrl": "https://raw.githubusercontent.com/stianmandarin/craft-terms-of-service/master/CHANGELOG.md",
     "components": {
       "craftTermsOfServiceService": "mandarindesign\\crafttermsofservice\\services\\CraftTermsOfServiceService"
     },
