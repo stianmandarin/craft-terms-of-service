@@ -21,7 +21,7 @@
       "homepage": "https://mandarindesign.no"
     }
   ],
-  "minimum-stability": "dev",
+  "minimum-stability": "stable",
   "require": {
     "craftcms/cms": "^3.0.0-RC1"
   },
