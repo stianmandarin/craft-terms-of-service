@@ -7,7 +7,6 @@ Use this plugin to force Craft users to consent to your TOS before being allowed
 ## Requirements
 
 * This plugin requires Craft CMS 3.0.0-beta.23 or later.
-* This plugin also requires that you install Redactor (free--find it in the Plugin Store).
 
 ## Installation
 
