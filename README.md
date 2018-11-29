@@ -58,5 +58,8 @@ Use at your own risk.
 ## Roadmap
 
 * Add norwegian translations
+* Add cookies as option for consent validation
+* Simplify process for checking if visitor has consented to TOS
+* Fix bug where plugin would fail if no user was logged in
 
 Brought to you by [Mandarin Design](https://mandarindesign.no)
