@@ -24,17 +24,22 @@ To install the plugin, follow these instructions.
 
 ## Configuring Terms of Service
 
-* Once installed, go to Terms of Service in the Craft CP (you can change this name in the plugin settings).
-  * Every new user must consent to the TOS if enabled.
-  * All users, regardless of previous consent, must consent again if you save a new version of your TOS (the TOS version updates automatically every time you save). 
-
+* Change this name of the plugin in its settings.
 
 ## Using Terms of Service
+
+* Every Craft user must consent to the TOS if enabled.
+* If the user is a guest, the their consent will be saved as a cookie rather than to the db.
+* All users, regardless of previous consent, must consent again if you save a new version of your TOS (the TOS version updates automatically every time you save). 
+
+### Variables
 
 * `{{ craft.craftTermsOfService.get('tosConsent') }}` returns true if the TOS is enabled, but only if the (latest) TOS hasn't been accepted
 * `{{ craft.craftTermsOfService.get('tosHeadline') }}` returns the TOS headline.
 * `{{ craft.craftTermsOfService.get('tosBody')|raw }}` returns the TOS body.
 * You can change the display name of the plugin in the CP by going to its settings page.
+
+### Example
 
 Use the code below as a jumping off point. Note that `{{ craft.craftTermsOfService.get('tosConsent') }}` will only return true if the user accepted TOS version does not match the latest TOS version, even if the setting is set to enabled in the CP.
 
