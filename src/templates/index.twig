@@ -49,45 +49,43 @@
     <p>If ever you edit your TOS, all users, regardless if previous acceptance, will be required to accept the edited TOS.</p>
     <p>See <a href="https://github.com/stianmandarin/crafttermsofservice/blob/master/README.md">https://github.com/stianmandarin/crafttermsofservice/blob/master/README.md</a> for usage and example code.</p>
 
-    <form action="" method="post">
-        {{ csrfInput() }}
+<form action="" method="post">
+    {{ csrfInput() }}
 
-        {{ forms.hidden({
-            name: 'action',
-            value: 'craft-terms-of-service/default/save-tos'
-        }) }}
+    {{ forms.hidden({
+        name: 'action',
+        value: 'craft-terms-of-service/default/save-tos'
+    }) }}
 
-        {{ forms.hidden({
-            name: 'tosCurrentVersion',
-            value: now.timestamp
-        }) }}
+    {{ forms.hidden({
+        name: 'tosCurrentVersion',
+        value: now.timestamp
+    }) }}
 
-        {{ forms.lightswitchField({
-            label: 'Enable TOS?'|t,
-            id: 'tosEnabled',
-            name: 'tosEnabled',
-            on: craft.craftTermsOfService.get('tosEnabled'),
-            first: true
-        }) }}
+    {{ forms.lightswitchField({
+        label: 'Enable TOS?'|t,
+        id: 'tosEnabled',
+        name: 'tosEnabled',
+        on: craft.craftTermsOfService.get('tosEnabled'),
+        first: true
+    }) }}
 
-        {{ forms.textField({
-            label: 'Headline'|t('craft-terms-of-service'),
-            instructions: 'Enter the headline of your TOS here.'|t('craft-terms-of-service'),
-            id: 'tosHeadline',
-            name: 'tosHeadline',
-            value: craft.craftTermsOfService.get('tosHeadline')
-        }) }}
+    {{ forms.textField({
+        label: 'Headline'|t('craft-terms-of-service'),
+        instructions: 'Enter the headline of your TOS here.'|t('craft-terms-of-service'),
+        id: 'tosHeadline',
+        name: 'tosHeadline',
+        value: craft.craftTermsOfService.get('tosHeadline')
+    }) }}
 
-        {{ craft.craftTermsOfService.redactorField({
-            label: 'Terms of Service'|t('craft-terms-of-service'),
-            instructions: 'Enter the TOS every user must accept before using the site below.'|t('craft-terms-of-service'),
-            name: 'tosBody',
-            rows: 4,
-            value: craft.craftTermsOfService.get('tosBody')|raw
-        })|raw }}
+    {{ craft.craftTermsOfService.redactorField({
+        label: 'Terms of Service'|t('craft-terms-of-service'),
+        instructions: 'Enter the TOS every user must accept before using the site below.'|t('craft-terms-of-service'),
+        name: 'tosBody',
+        rows: 4,
+        value: craft.craftTermsOfService.get('tosBody')|raw
+    })|raw }}
 
-
-
-        <input type="submit" class="submit btn" value="{{ 'Save'|t }}">
-    </form>
+    <input type="submit" class="submit btn" value="{{ 'Save'|t }}">
+</form>
 {% endblock %}

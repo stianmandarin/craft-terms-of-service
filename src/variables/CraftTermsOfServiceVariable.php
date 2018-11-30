@@ -10,6 +10,7 @@
 
 namespace mandarindesign\crafttermsofservice\variables;
 
+use mandarindesign\craftsms\CraftSms;
 use mandarindesign\crafttermsofservice\CraftTermsOfService;
 
 use Craft;
@@ -35,30 +36,38 @@ class CraftTermsOfServiceVariable
 
     /**
      * Query db for value of plugin settings
-     * {{ craft.craftTermsOfService.get('tosEnabled') }}          // true or false
-     * {{ craft.craftTermsOfService.get('tosHeadline') }}         // Plain text
-     * {{ craft.craftTermsOfService.get('tosBody')|raw }}         // Redactor body
-     * {{ craft.craftTermsOfService.get('userAcceptedVersion') }} // Unix timestamp of when the user last accepted TOS
-     * {{ craft.craftTermsOfService.get('tosCurrentVersion') }}   // Unix timestamp of when the TOS was last updated
-     * {{ craft.craftTermsOfService.get('tosPluginName') }} // Returns name of the plugin as set in settings
+     * See README.md
      *
      */
     public function get($value)
     {
-        // Cache
-        $userId = Craft::$app->user->id;
-
         // Logic
-        if ($value === 'userAcceptedVersion') {
-            // Get the latest version of the TOS
-            $userAcceptedVersion = CraftTermsOfServiceRecord::find()->where("userId = $userId")->one();
+        if ($value === 'tosConsent') {
+            if (CraftTermsOfService::$plugin->getSettings()->tosEnabled) {
+                if (Craft::$app->user->getIsGuest()) {
+                    // Get the latest version the user has accepted from cookie
+                    if (!isset($_COOKIE['tosConsent'])) {
+                        $userAcceptedVersion = 0;
+                    } else {
+                        $userAcceptedVersion = (int)$_COOKIE['tosConsent'];
+                    }
+                } else {
+                    // Get the latest version the user has accepted from the db
+                    $userId = Craft::$app->user->id;
+                    $userAcceptedVersion = CraftTermsOfServiceRecord::find()->where("userId = $userId")->one();
+                    $userAcceptedVersion = $userAcceptedVersion->userAcceptedVersion;
+                }
 
-            // Return whichever TOS version the user has accepted (if any)
-            if ($userAcceptedVersion) {
-                return $userAcceptedVersion->userAcceptedVersion;
+                // If the user accepted TOS version does not match the latest TOS version, return true to show the TOS
+                if ($userAcceptedVersion != CraftTermsOfService::$plugin->getSettings()->tosCurrentVersion) {
+                    return true;
+                }
+            } else {
+                // Skip the whole validation thing if the TOS plugin isn't enabled
+                return false;
             }
         } else {
-            // Get `tosEnabled`, `tosHeadline` or `tosBody`, `tosCurrentVersion`, `tosPluginName`
+            // Get `tosHeadline`, `tosBody` or `tosPluginName`
             return CraftTermsOfService::$plugin->getSettings()->$value;
         }
     }

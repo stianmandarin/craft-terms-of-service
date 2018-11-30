@@ -7,3 +7,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 ## 1.0.0 - 2018-11-27
 ### Added
 - Initial release
+
+## 1.0.1
+### Added
+- Add cookies as option for consent validation
+- Simplified the way you check if TOS are accepted or not, and if not, whether they should show (see code example in README.md)

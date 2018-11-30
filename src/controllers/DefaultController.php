@@ -48,7 +48,7 @@ class DefaultController extends Controller
      *         The actions must be in 'kebab-case'
      * @access protected
      */
-    protected $allowAnonymous = ['index', 'do-something'];
+    protected $allowAnonymous = ['index', 'accept-tos'];
 
     // Public Methods
     // =========================================================================
@@ -91,20 +91,27 @@ class DefaultController extends Controller
      */
     public function actionAcceptTos()
     {
-        // Cache
-        $userId = Craft::$app->user->id;
+        if (Craft::$app->user->getIsGuest()) {
+            // User is not logged in, so we must use cookies to validate TOS consent
+            $cookieName = "tosConsent";
+            $cookieVersion = CraftTermsOfService::$plugin->getSettings()->tosCurrentVersion;
+            setcookie($cookieName, $cookieVersion, time() + (10 * 365 * 24 * 60 * 60), "/"); // 10 years
+        } else {
+            // User is logged in, save their TOS consent to the db
+            $userId = Craft::$app->user->id;
 
-        // Delete any previous TOS acceptance from the logged in user
-        $existingAcceptance = CraftTermsOfServiceRecord::find()->where("userId = $userId")->one();
-        if ($existingAcceptance) {
-            $existingAcceptance->delete();
+            // Delete any previous TOS acceptance from the logged in user
+            $existingAcceptance = CraftTermsOfServiceRecord::find()->where("userId = $userId")->one();
+            if ($existingAcceptance) {
+                $existingAcceptance->delete();
+            }
+
+            // Mark the user as having accepted the latest terms
+            $tos = new CraftTermsOfServiceRecord();
+            $tos->userId = $userId;
+            $tos->userAcceptedVersion = CraftTermsOfService::$plugin->getSettings()->tosCurrentVersion;
+            $tos->save();
         }
-
-        // Mark the user as having accepted the latest terms
-        $tos = new CraftTermsOfServiceRecord();
-        $tos->userId = $userId;
-        $tos->userAcceptedVersion = CraftTermsOfService::$plugin->getSettings()->tosCurrentVersion;;
-        $tos->save();
 
         // Redirect to referrer with optional URL param
         $referrer = preg_replace('/\?.*/', '', Craft::$app->request->getReferrer());
