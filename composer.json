@@ -13,8 +13,8 @@
     "craft terms of service"
   ],
   "support": {
-    "docs": "https://github.com/stianmandarin/crafttermsofservice",
-    "issues": "https://github.com/stianmandarin/crafttermsofservice/issues"
+    "docs": "https://github.com/stianmandarin/craft-terms-of-service",
+    "issues": "https://github.com/stianmandarin/craft-terms-of-service/issues"
   },
   "license": "MIT",
   "authors": [
@@ -43,7 +43,7 @@
     "handle": "craft-terms-of-service",
     "hasCpSettings": true,
     "hasCpSection": true,
-    "changelogUrl": "https://raw.githubusercontent.com/stianmandarin/craft-terms-of-service/master/CHANGELOG.md",
+    "changelogUrl": "https://github.com/stianmandarin/craft-terms-of-service/blob/master/CHANGELOG.md",
     "components": {
       "craftTermsOfServiceService": "mandarindesign\\crafttermsofservice\\services\\CraftTermsOfServiceService"
     },
