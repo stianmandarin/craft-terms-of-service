@@ -2,7 +2,7 @@
 /**
  * Craft Terms of Service plugin for Craft CMS 3.x
  *
- * Force logged in users to accept the sites TOS before being able to use the site.
+ * Force visitors to accept TOS before being allowed access to parts, or all of your site.
  *
  * @link      https://mandarindesign.no
  * @copyright Copyright (c) 2018 Mandarin Design

@@ -2,7 +2,7 @@
   "minimum-stability": "dev",
   "prefer-stable": true,
   "name": "mandarindesign/craft-terms-of-service",
-  "description": "Force logged in users to accept the sites TOS before being able to use the site.",
+  "description": "Force visitors to accept TOS before being allowed access to parts, or all of your site.",
   "type": "craft-plugin",
   "version": "1.0.1",
   "keywords": [
