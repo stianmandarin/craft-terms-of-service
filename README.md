@@ -37,7 +37,6 @@ To install the plugin, follow these instructions.
 * `{{ craft.craftTermsOfService.get('tosConsent') }}` returns true if the TOS is enabled, but only if the (latest) TOS hasn't been accepted
 * `{{ craft.craftTermsOfService.get('tosHeadline') }}` returns the TOS headline.
 * `{{ craft.craftTermsOfService.get('tosBody')|raw }}` returns the TOS body.
-* You can change the display name of the plugin in the CP by going to its settings page.
 
 ### Example
 
