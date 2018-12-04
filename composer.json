@@ -4,7 +4,6 @@
   "name": "mandarindesign/craft-terms-of-service",
   "description": "Force visitors to accept TOS before being allowed access to parts, or all of your site.",
   "type": "craft-plugin",
-  "version": "1.0.1",
   "keywords": [
     "craft",
     "cms",
